@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     "corsheaders",
+    'core',
 ]
 
 CORS_ORIGIN_WHITELIST = [
@@ -60,7 +61,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'Backend.urls'
 
-
+AUTH_USER_MODEL = 'core.CustomUser'
 
 TEMPLATES = [
     {
