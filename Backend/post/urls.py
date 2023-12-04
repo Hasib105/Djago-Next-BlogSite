@@ -4,11 +4,11 @@ from . import views
 
 router = routers.DefaultRouter()
 router.register('categories', views.CategoryViewSet, basename='category')
-router.register('posts', views.PostViewSet, basename='posts')
+router.register('posts', views.PostViewset, basename='posts')
 
 
 post_router = routers.NestedDefaultRouter(router, 'categories', lookup='category')
-post_router.register('post', views.CategoryViewSet, basename='post-category')
+post_router.register('post', views.PostCategoryViewSet, basename='post-category')
 
 
 urlpatterns = router.urls + post_router.urls 

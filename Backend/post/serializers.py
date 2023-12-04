@@ -6,7 +6,7 @@ from .models import Category , Post
 
 
     
-class PostSerializer(serializers.ModelSerializer):
+class PostCategorySerializer(serializers.ModelSerializer):
     slug = serializers.ReadOnlyField()
     class Meta:
         model = Post
@@ -17,7 +17,11 @@ class PostSerializer(serializers.ModelSerializer):
         return Post.objects.create(category_id= category_id , **validated_data)
 
 
-
+class PostSerializer(serializers.ModelSerializer):
+    slug = serializers.ReadOnlyField()
+    class Meta:
+        model = Post
+        fields = ['id', 'title','slug', 'content', 'image', 'published_date', 'category']
 
 class CategorySerializer(serializers.ModelSerializer):
     slug = serializers.ReadOnlyField()
