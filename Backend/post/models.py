@@ -23,7 +23,7 @@ class Post(models.Model):
   title = models.CharField(max_length=255)
   slug = models.SlugField(unique=True, blank=True)
   content = models.TextField()
-  content_image = models.ImageField(upload_to='post_images/%Y/%m/%d/',null=True, blank=True)
+  image = models.ImageField(upload_to='post_images/%Y/%m/%d/',null=True, blank=True)
   published_date = models.DateTimeField(auto_now_add=True)
   category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='posts')
 

@@ -2,13 +2,25 @@ from rest_framework import serializers
 from .models import Category , Post
 
 
-class CategorySerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Category
-        fields = ['id','name']
-    
-class PostSerializer(serializers.ModelSerializer):
+class SimplePostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
-        fields = ['id', 'title', 'content', 'content_image', 'published_date', 'category']
+        fields = ['id', 'title', 'content_image' ]
+
+
+class CategorySerializer(serializers.ModelSerializer):
+    posts = SimplePostSerializer(many=True, read_only=True)
+    slug = serializers.ReadOnlyField()
+    class Meta:
+        model = Category
+        fields = ['id','slug','name','posts']
+    
+class PostSerializer(serializers.ModelSerializer):
+    slug = serializers.ReadOnlyField()
+    class Meta:
+        model = Post
+        fields = ['id', 'title','slug', 'content', 'image', 'published_date', 'category']
+
+
+
 
