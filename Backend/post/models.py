@@ -4,9 +4,9 @@ from django.utils.text import slugify
 
 
 class Category(models.Model):
-  """Model for blog post categories."""
+  
   name = models.CharField(max_length=255)
-  slug = models.SlugField(unique=True)
+  slug = models.SlugField()
 
   def __str__(self):
     return self.name
@@ -21,7 +21,7 @@ class Category(models.Model):
 
 class Post(models.Model):
   title = models.CharField(max_length=255)
-  slug = models.SlugField(unique=True, blank=True)
+  slug = models.SlugField()
   content = models.TextField()
   image = models.ImageField(upload_to='post_images/%Y/%m/%d/',null=True, blank=True)
   published_date = models.DateTimeField(auto_now_add=True)
