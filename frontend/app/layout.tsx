@@ -25,9 +25,9 @@ export default function RootLayout({
                     defaultTheme="system"
                     enableSystem
                     disableTransitionOnChange>
-                    <div className="grid lg:grid-cols-6 h-screen object-contain overflow-hidden">
+                    <div className="grid lg:grid-cols-5 h-screen object-contain overflow-hidden">
                         <Sidebar className="hidden lg:block" />
-                        <div className="col-span-4 lg:col-span-5 lg:border-l h-screen relative">
+                        <div className="col-span-3 lg:col-span-4 lg:border-l h-screen relative">
                             <ScrollArea className="h-full">
                                 {children}
                             </ScrollArea>
