@@ -2,6 +2,7 @@ import {
     Biohazard,
     ChevronRight,
     Home,
+    Library,
     Newspaper,
     PlaySquare,
     Search,
@@ -11,6 +12,7 @@ import {
 import { ModeToggle } from "./mode-toggle";
 import { ScrollArea } from "./ui/scroll-area";
 import { Button } from "./ui/button";
+import Link from "next/link";
 
 export default function SidebarMainMenu({
     onNavigate,
@@ -35,18 +37,28 @@ export default function SidebarMainMenu({
             {/* Sidebar menu section */}
             <ScrollArea className="h-full">
                 <div className="space-y-1 px-4">
-                    <Button
-                        variant="secondary"
-                        className="w-full justify-start">
-                        <Home className="mr-3 h-4 w-4" />
-                        Home
-                    </Button>
+                    <Link href="/">
+                        <Button
+                            variant="secondary"
+                            className="w-full justify-start">
+                            <Home className="mr-3 h-4 w-4" />
+                            Home
+                        </Button>
+                    </Link>
                     <Button
                         variant="ghost"
                         className="w-full justify-start">
                         <Search className="mr-3 h-4 w-4" />
                         Search
                     </Button>
+                    <Link href="/posts">
+                        <Button
+                            variant="ghost"
+                            className="w-full justify-start">
+                            <Library className="mr-3 h-4 w-4" />
+                            All Posts
+                        </Button>
+                    </Link>
                     <Button
                         onClick={() => onNavigate("categories")}
                         variant="ghost"
