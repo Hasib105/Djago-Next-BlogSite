@@ -1,15 +1,20 @@
 import { ChevronLeft, Star } from "lucide-react";
 import { ScrollArea } from "./ui/scroll-area";
 import { Button } from "./ui/button";
-import { useCategories } from "@/hooks/use-categories";
 import { Skeleton } from "./ui/skeleton";
+import { useFetch } from "@/hooks/use-fetch";
+import { Category } from "@/types";
 
 interface Props {
     onNavigate: (menu: string) => void;
 }
 
 export default function SidebarCategoriesMenu({ onNavigate }: Props) {
-    const { categories, loading, error } = useCategories();
+    const {
+        data: categories,
+        loading,
+        error,
+    } = useFetch<Category>("/categories");
 
     return (
         <div className="h-full">

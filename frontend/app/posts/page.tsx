@@ -2,14 +2,17 @@
 
 import Postcard from "@/components/post-card";
 import { Skeleton } from "@/components/ui/skeleton";
-import { usePosts } from "@/hooks/use-posts";
+import { useFetch } from "@/hooks/use-fetch";
+import { Post } from "@/types";
 
-export default function Home() {
-    const { posts, loading, error } = usePosts();
+export default function AllPosts() {
+    const { data: posts, loading, error } = useFetch<Post>("/posts");
 
     return (
         <div className="h-full p-8">
-            <h1 className="text-4xl font-black pt-2 pb-6 capitalize">All Posts</h1>
+            <h1 className="text-4xl font-black pt-2 pb-6 capitalize">
+                All Posts
+            </h1>
             <div className="grid grid-cols-4 gap-4 h-full">
                 {loading &&
                     Array(12)
@@ -22,9 +25,7 @@ export default function Home() {
                         ))}
 
                 {error && (
-                    <p className="text-destructive">
-                        Could not load categories!
-                    </p>
+                    <p className="text-destructive">Could not load posts!</p>
                 )}
 
                 {posts &&
