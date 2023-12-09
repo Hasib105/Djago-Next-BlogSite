@@ -6,10 +6,10 @@ import { useFetch } from "@/hooks/use-fetch";
 import { Post } from "@/types";
 
 export default function AllPosts() {
-    const { data: posts, loading, error } = useFetch<Post>("/posts");
+    const { data: posts, loading, error } = useFetch<Post[]>("/posts");
 
     return (
-        <div className="h-full p-8">
+        <div className="h-full py-8 px-20">
             <h1 className="text-4xl font-black pt-2 pb-6 capitalize">
                 All Posts
             </h1>

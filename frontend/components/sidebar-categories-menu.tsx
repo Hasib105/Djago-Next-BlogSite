@@ -14,7 +14,7 @@ export default function SidebarCategoriesMenu({ onNavigate }: Props) {
         data: categories,
         loading,
         error,
-    } = useFetch<Category>("/categories");
+    } = useFetch<Category[]>("/categories");
 
     return (
         <div className="h-full">
