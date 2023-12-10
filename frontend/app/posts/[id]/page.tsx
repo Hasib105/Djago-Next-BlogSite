@@ -1,5 +1,5 @@
 import { Category, Post } from "@/types";
-import { getData } from "@/utils/get-data";
+import { getData } from "@/lib/get-data";
 import Image from "next/image";
 import Link from "next/link";
 

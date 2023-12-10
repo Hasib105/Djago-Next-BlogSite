@@ -6,7 +6,7 @@ export function useFetch<T>(endpoint: string) {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        fetch("http://localhost:8000/blog" + endpoint)
+        fetch(process.env.NEXT_PUBLIC_BACKEND_URL + endpoint)
             .then((res) => res.json())
             .then((data) => {
                 setData(data);

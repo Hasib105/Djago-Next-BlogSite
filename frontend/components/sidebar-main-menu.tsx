@@ -1,12 +1,11 @@
 import {
     Biohazard,
     ChevronRight,
+    FileEdit,
     Home,
     Library,
     Newspaper,
-    PlaySquare,
     Search,
-    ShoppingBag,
     Star,
 } from "lucide-react";
 import { ModeToggle } from "./mode-toggle";
@@ -75,18 +74,12 @@ export default function SidebarMainMenu({
                         <Newspaper className="mr-3 h-4 w-4" />
                         News
                     </Button>
-                    <Button
-                        variant="ghost"
-                        className="w-full justify-start">
-                        <ShoppingBag className="mr-3 h-4 w-4" />
-                        Store
-                    </Button>
-                    <Button
-                        variant="ghost"
-                        className="w-full justify-start">
-                        <PlaySquare className="mr-3 h-4 w-4" />
-                        Videos
-                    </Button>
+                    <Link href="/posts/new">
+                        <Button className="w-full justify-start rounded-full mt-8">
+                            <FileEdit className="mr-3 h-4 w-4" />
+                            New Post
+                        </Button>
+                    </Link>
                 </div>
             </ScrollArea>
         </div>

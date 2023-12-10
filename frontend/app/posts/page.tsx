@@ -1,6 +1,6 @@
 import Postcard from "@/components/post-card";
 import { Post } from "@/types";
-import { getData } from "@/utils/get-data";
+import { getData } from "@/lib/get-data";
 
 export default async function AllPosts() {
     const posts: Post[] = await getData("/posts");
