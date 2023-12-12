@@ -10,7 +10,7 @@ export default function Postcard({ post }: { post: Post }) {
                 <Image
                     height={200}
                     width={300}
-                    className="rounded-lg group-hover:opacity-90 transition-all duration-300"
+                    className="rounded-lg group-hover:opacity-90 transition-all duration-300 aspect-[3/2] object-cover"
                     src={
                         post.image ? post.image : "/images/static/no-image.png"
                     }

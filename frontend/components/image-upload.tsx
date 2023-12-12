@@ -41,6 +41,7 @@ const ImageUpload = forwardRef<HTMLInputElement, InputProps>(
                     className={cn("cursor-pointer", className)}
                     ref={ref}
                     type="file"
+                    accept="image/png, image/gif, image/jpeg, image/webp"
                     onChange={onSelectFile}
                     {...props}
                 />

@@ -28,7 +28,6 @@ const AutofitTextarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
         return (
             <Textarea
                 ref={textareaRef}
-                placeholder="Post body"
                 className={cn("resize-none", className)}
                 onInput={expandTextarea}
                 {...props}

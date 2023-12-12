@@ -2,8 +2,10 @@
 
 import { AutofitTextarea } from "@/components/autofit-texarea";
 import { ImageUpload } from "@/components/image-upload";
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { useFetch } from "@/hooks/use-fetch";
+import { Category } from "@/types";
 import {
     Select,
     SelectContent,
@@ -11,11 +13,6 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select";
-import { Textarea } from "@/components/ui/textarea";
-import { useFetch } from "@/hooks/use-fetch";
-import { Category } from "@/types";
-import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
 
 export default function Post() {
     const {
@@ -25,10 +22,14 @@ export default function Post() {
     } = useFetch<Category[]>("/categories");
 
     return (
-        <form className="h-full py-8 px-20">
+        <form
+            encType="multipart/form-data"
+            action={process.env.NEXT_PUBLIC_BACKEND_URL + "/posts/"}
+            method="POST"
+            className="h-full py-8 px-20">
             <div className="flex items-center font-bold uppercase text-xs cursor-pointer">
                 <span className="mr-2">Category:</span>
-                <Select>
+                <Select name="category">
                     <SelectTrigger className="w-48">
                         <SelectValue placeholder="Select category" />
                     </SelectTrigger>
@@ -44,15 +45,30 @@ export default function Post() {
                     </SelectContent>
                 </Select>
             </div>
+
             <Input
+                name="title"
                 className="text-5xl font-black py-8 my-4"
                 placeholder="Post title"
             />
-            <ImageUpload />
+
+            <ImageUpload name="image" />
+
             <p className="py-4 font-bold uppercase text-xs border-b border-border">
                 Status: <span className="text-destructive">Draft</span>
             </p>
-            <AutofitTextarea className="mt-6"/>
+
+            <AutofitTextarea
+                name="content"
+                className="my-4"
+                placeholder="Post body"
+            />
+
+            <Button
+                type="submit"
+                size="lg">
+                Publish
+            </Button>
         </form>
     );
 }
