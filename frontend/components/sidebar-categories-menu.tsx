@@ -4,6 +4,7 @@ import { Button } from "./ui/button";
 import { Skeleton } from "./ui/skeleton";
 import { useFetch } from "@/hooks/use-fetch";
 import { Category } from "@/types";
+import Link from "next/link";
 
 interface Props {
     onNavigate: (menu: string) => void;
@@ -55,13 +56,16 @@ export default function SidebarCategoriesMenu({ onNavigate }: Props) {
                     )}
                     {categories &&
                         categories.map((category) => (
-                            <Button
-                                key={category.id}
-                                variant="ghost"
-                                className="w-full justify-start">
-                                <Star className="mr-3 h-4 w-4" />
-                                {category.name}
-                            </Button>
+                            <Link
+                                href={`/category/${category.id}`}
+                                key={category.id}>
+                                <Button
+                                    variant="ghost"
+                                    className="w-full justify-start">
+                                    <Star className="mr-3 h-4 w-4" />
+                                    {category.name}
+                                </Button>
+                            </Link>
                         ))}
                 </div>
             </ScrollArea>
