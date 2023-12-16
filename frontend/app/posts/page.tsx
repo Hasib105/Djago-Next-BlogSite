@@ -9,7 +9,7 @@ export default async function AllPosts() {
             <h1 className="text-4xl font-black pt-2 pb-6 capitalize">
                 All Posts
             </h1>
-            <div className="grid grid-cols-4 gap-4 h-full">
+            <div className="grid grid-cols-4 gap-6 h-full">
                 {posts &&
                     posts.map((post) => (
                         <Postcard

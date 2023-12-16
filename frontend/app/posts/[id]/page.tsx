@@ -19,7 +19,7 @@ export default async function Post({ params }: { params: { id: number } }) {
             </div>
             <h1 className="text-5xl font-black py-4">{post.title}</h1>
             <Image
-                className="w-full rounded-md mt-2"
+                className="w-full rounded-md mt-2 aspect-[3/2] object-cover"
                 alt={post.title}
                 height={600}
                 width={900}

@@ -18,7 +18,7 @@ export default function Postcard({ post }: { post: Post }) {
                 />
             </Link>
             <Link href={`/posts/${post.id}`}>
-                <CardTitle className="leading-none pt-1 text-md group-hover:underline transition-all duration-300">
+                <CardTitle className="leading-none pt-1 text-md group-hover:underline transition-all duration-300 capitalize line-clamp-2">
                     {post.title}
                 </CardTitle>
             </Link>
