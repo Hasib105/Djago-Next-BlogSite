@@ -5,6 +5,7 @@ import "./globals.css";
 import { Sidebar } from "@/components/sidebar";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { ThemeProvider } from "@/components/theme-provider";
+import { Toaster } from "@/components/ui/toaster";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -33,6 +34,7 @@ export default function RootLayout({
                             </ScrollArea>
                         </div>
                     </div>
+                    <Toaster />
                 </ThemeProvider>
             </body>
         </html>

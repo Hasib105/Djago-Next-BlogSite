@@ -1,10 +1,12 @@
 "use client";
 
 import { useFetch } from "@/hooks/use-fetch";
-import { Category } from "@/types";
+import { Category, Post } from "@/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { postFormSchema, PostFormSchema } from "./post-form-schema";
+import { useToast } from "@/components/ui/use-toast";
+import { useRouter } from "next/navigation";
 
 import Image from "next/image";
 import { AutofitTextarea } from "@/components/autofit-texarea";
@@ -30,6 +32,9 @@ import { useEffect } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 
 export default function Post() {
+    const router = useRouter();
+    const { toast } = useToast();
+
     const form = useForm<PostFormSchema>({
         resolver: zodResolver(postFormSchema),
         defaultValues: {
@@ -57,25 +62,39 @@ export default function Post() {
     }, [imagePreview]);
 
     const handleSubmit = async (values: PostFormSchema) => {
-        const formData = new FormData();
-        formData.append("category", values.category);
-        formData.append("title", values.title);
-        formData.append("content", values.content);
-        if (values.image) {
-            formData.append("image", values.image);
-        }
-
-        const response = await fetch(
-            process.env.NEXT_PUBLIC_BACKEND_URL + "/posts/",
-            {
-                method: "POST",
-                body: formData,
+        try {
+            const formData = new FormData();
+            formData.append("category", values.category);
+            formData.append("title", values.title);
+            formData.append("content", values.content);
+            if (values.image) {
+                formData.append("image", values.image);
             }
-        );
 
-        // Handle response if necessary
-        const data = await response.json();
-        console.log(data);
+            const response = await fetch(
+                process.env.NEXT_PUBLIC_BACKEND_URL + "/posts/",
+                {
+                    method: "POST",
+                    body: formData,
+                }
+            );
+
+            if (!response.ok) {
+                toast({
+                    variant: "destructive",
+                    title: "Could not create the post.",
+                    description: `The server responded with a status of ${response.status}.`,
+                });
+            }
+
+            if (response.status === 201) {
+                const newPost: Post = await response.json();
+
+                router.push(`/posts/${newPost.id}`);
+            }
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     return (
